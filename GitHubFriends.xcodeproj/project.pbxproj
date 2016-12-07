@@ -8,20 +8,24 @@
 
 /* Begin PBXBuildFile section */
 		E333B1461DF89323008CF088 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E333B1451DF89323008CF088 /* AppDelegate.swift */; };
-		E333B1481DF89323008CF088 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E333B1471DF89323008CF088 /* ViewController.swift */; };
 		E333B14B1DF89323008CF088 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E333B1491DF89323008CF088 /* Main.storyboard */; };
 		E333B14D1DF89323008CF088 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E333B14C1DF89323008CF088 /* Assets.xcassets */; };
 		E333B1501DF89323008CF088 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E333B14E1DF89323008CF088 /* LaunchScreen.storyboard */; };
+		E333B1581DF893F9008CF088 /* GitHubFriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E333B1571DF893F9008CF088 /* GitHubFriendsTableViewController.swift */; };
+		E333B15A1DF89490008CF088 /* APIGitHubController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E333B1591DF89490008CF088 /* APIGitHubController.swift */; };
+		E333B15C1DF8B614008CF088 /* NewFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E333B15B1DF8B614008CF088 /* NewFriendViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		E333B1421DF89323008CF088 /* GitHubFriends.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitHubFriends.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E333B1451DF89323008CF088 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		E333B1471DF89323008CF088 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		E333B14A1DF89323008CF088 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E333B14C1DF89323008CF088 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E333B14F1DF89323008CF088 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E333B1511DF89323008CF088 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E333B1571DF893F9008CF088 /* GitHubFriendsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GitHubFriendsTableViewController.swift; sourceTree = SOURCE_ROOT; };
+		E333B1591DF89490008CF088 /* APIGitHubController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APIGitHubController.swift; path = ../APIGitHubController.swift; sourceTree = "<group>"; };
+		E333B15B1DF8B614008CF088 /* NewFriendViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewFriendViewController.swift; path = ../NewFriendViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,7 +59,9 @@
 			isa = PBXGroup;
 			children = (
 				E333B1451DF89323008CF088 /* AppDelegate.swift */,
-				E333B1471DF89323008CF088 /* ViewController.swift */,
+				E333B1571DF893F9008CF088 /* GitHubFriendsTableViewController.swift */,
+				E333B15B1DF8B614008CF088 /* NewFriendViewController.swift */,
+				E333B1591DF89490008CF088 /* APIGitHubController.swift */,
 				E333B1491DF89323008CF088 /* Main.storyboard */,
 				E333B14C1DF89323008CF088 /* Assets.xcassets */,
 				E333B14E1DF89323008CF088 /* LaunchScreen.storyboard */,
@@ -136,7 +142,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E333B1481DF89323008CF088 /* ViewController.swift in Sources */,
+				E333B15A1DF89490008CF088 /* APIGitHubController.swift in Sources */,
+				E333B15C1DF8B614008CF088 /* NewFriendViewController.swift in Sources */,
+				E333B1581DF893F9008CF088 /* GitHubFriendsTableViewController.swift in Sources */,
 				E333B1461DF89323008CF088 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
