@@ -32,7 +32,7 @@ struct Friend
         {
            do
             {
-               if let dictionary =  as? [String: Any]
+               if let dictionary = data as? [String: Any]
                 {
                 let avatar = dictionary["avatar_url"] as? String ?? ""
                 let aFriend = [Friend](avatar_url: avatar, login: username, name: name!, location: location!)
