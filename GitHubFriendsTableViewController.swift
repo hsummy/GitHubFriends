@@ -8,46 +8,90 @@
 
 import UIKit
 
-class GitHubFriendsTableViewController: UITableViewController
+
+
+class GitHubFriendsTableViewController: UITableViewController, APIControllerProtocol
+    
 {
 
     var api: APIGitHubController!
+    var gitHubFriends = [Friend]()
+   // let cancelButton = UIButton()
+   // let searchButton = UIButton()
     
+   /* override func viewDidLoad()
+    {
+        super.viewDidLoad()
+        
+        cancelButton()
+        self.clearsSelectionOnViewWillAppear = false
+        
+        self.navigationItem.rightBarButtonItem = self.editButtonItem
+    }
+    */
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        api = APIGitHubController()
+        api = APIGitHubController(delegate: self)
         //come back later for api.searchGitHubFor(). it will error out until other steps are taken.
         api.searchGitHubFor("jcgohlke")
-
+        
+        
+        //cancelButton()
+        
+        //self.clearsSelectionOnViewWillAppear = false
+        //self.navigationItem.rightBarButtonItem = self.editButtonItem
+        //button.addTarget(self, action: "buttonPressed:", forControlEvent: .TouchUpInside)
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "FriendCell")
+        title = "Git Hub Friends"
     }
-
+       // func cancelButton ()
+        //{
+            //let cancelButton = UIButton();
+           // cancelButton.setTitle("Cancel", for: .normal)
+           // cancelButton.setTitleColor(UIColor.blue, for: .normal)
+            // button.frame = CGRect(?, ?, ?, ?) - need to get dimensions
+            //self.view.addSubview(cancelButton)
+        //}
+    
     override func didReceiveMemoryWarning()
     {
         super.didReceiveMemoryWarning()
-
+    }
+    
+    func didReceiveAPIData(_ data: [Any])
+    {
+        let queue = DispatchQueue.main
+        queue.async
+        {
+        self.gitHubFriends = Friend.friendsJSON(data)
+        self.tableView.reloadData()
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
+        }
     }
 
 // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int
     {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        return gitHubFriends.count
     }
 
 
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
+    {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "FriendCell", for: indexPath)
+        let friend = gitHubFriends[indexPath.row]
+        cell.textLabel?.text = friend.name
         return cell
     }
-    
+    //yourButton.center = CGPointMake(320.0, 480.0);
 
 } //end of class GitHubFriendsTableViewController

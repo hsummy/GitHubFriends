@@ -8,12 +8,17 @@
 
 import Foundation
 
+protocol APIControllerProtocol
+{
+    func didReceiveAPIData (_: [Any])
+}
 class APIGitHubController
 {
-    init ()
+    var delegate: APIControllerProtocol
+    
+    init (delegate: APIControllerProtocol)
     {
-        
-        
+        self.delegate = delegate
     }
     func searchGitHubFor(_ friendName: String)
     {
@@ -24,7 +29,8 @@ class APIGitHubController
           
             let session = URLSession.shared
           
-            let task = session.dataTask(with: url, completionHandler: {
+            let task = session.dataTask(with: url, completionHandler:
+            {
                 data, response, error in
                
                 print("Task completed")
@@ -33,22 +39,36 @@ class APIGitHubController
                     print(error!.localizedDescription)
                 }
                    
-                else if let dictionary = self.parseJSON(data!)
-                {
-                    
-                }
-                
-                })
+                else if self.parseJSON(data!) != nil
+               {
+ 
+               }
+            })
 
             task.resume()
-    
+
     }// end of func searchGitHubFor
     func parseJSON(_ data: Data) -> [String: Any]?
     {
+        do
+        {
+            let json = try JSONSerialization.jsonObject(with: data, options: [])
+            if let dictionary = json as? [String: Any]
+            {
+                return dictionary
+            }
+            else
+            {
+                return nil
+            }
+        }
+        catch let error as NSError
+    
+        {
+        print(error)
         return nil
+        }
+    
     }
-    
-    
-    
     
 }//end of class APIGitHubController
