@@ -11,36 +11,48 @@ import Foundation
 struct Friend
 
 {
-    let avatar_url: String
+   // let avatar_url: String?
     let login: String
-    let name: String
-    let location: String
+   // let name: String?
+   // let location: String?
     
-    init(avatar: String, username: String, name: String, location: String)
+    //init(avatar: String, username: String, name: String, location: String)
+        init(login: String)
     {
-        avatar_url = avatar
-        login = username
-        self.name = name
-        self.location = location
+        //avatar_url = avatar
+        self.login = login
+        //self.name = name
+       // self.location = location
         
     }
     
-   static func friendsJSON(_ data: [Any]) -> [Friend]
+   static func friendsJSON(_ dataFriends: String) -> [Friend]
     {
         var gitHubFriends = [Friend]()
-        if data.count > 0
-        {
-           do
-            {
-               if let dictionary = data as? [String: Any]
-                {
-                let avatar = dictionary["avatar_url"] as? String ?? ""
-                let aFriend = [Friend](avatar_url: avatar, login: username, name: name!, location: location!)
-            gitHubFriends.append(aFriend)
-                }
-            }
-        }
-
+//        if dataFriends.count > 0
+//        {
+//            for data in dataFriends
+//            {
+//                if let friendInDictionary = dataFriends as? [String: Any]
+//                {
+//                    if let username = friendInDictionary["login"] as? String
+//                    
+//                        let avatar = friendInDictionary["avatar_url"] as? String ?? ""
+//                        let username = friendInDictionary["login"] as? String ?? ""
+//                        let name = friendInDictionary["name"] as? String ?? ""
+//                        let location = friendInDictionary["location"] as? String ?? ""
+//                        
+                        // gitHubFriends.append(Friend(avatar: avatar, username: username, name: name, location: location))
+                        //let aFriend = [Friend](avatar_url: avatar, login: username, name: name, location: location)
+        
+                        let login = dataFriends
+                        gitHubFriends.append(Friend(login: login))
+                        
+                   // }
+               // }
+            //}
+            
+       // }
         return gitHubFriends
     }//end of static
 

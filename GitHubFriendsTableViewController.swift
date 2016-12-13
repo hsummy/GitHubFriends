@@ -16,19 +16,7 @@ class GitHubFriendsTableViewController: UITableViewController, APIControllerProt
 
     var api: APIGitHubController!
     var gitHubFriends = [Friend]()
-   // let cancelButton = UIButton()
-   // let searchButton = UIButton()
-    
-   /* override func viewDidLoad()
-    {
-        super.viewDidLoad()
-        
-        cancelButton()
-        self.clearsSelectionOnViewWillAppear = false
-        
-        self.navigationItem.rightBarButtonItem = self.editButtonItem
-    }
-    */
+
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -37,11 +25,7 @@ class GitHubFriendsTableViewController: UITableViewController, APIControllerProt
         api.searchGitHubFor("jcgohlke")
         
         
-        //cancelButton()
-        
-        //self.clearsSelectionOnViewWillAppear = false
-        //self.navigationItem.rightBarButtonItem = self.editButtonItem
-        //button.addTarget(self, action: "buttonPressed:", forControlEvent: .TouchUpInside)
+
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "FriendCell")
@@ -61,12 +45,12 @@ class GitHubFriendsTableViewController: UITableViewController, APIControllerProt
         super.didReceiveMemoryWarning()
     }
     
-    func didReceiveAPIData(_ data: [Any])
+    func didReceiveAPIData(_ dataFriends: String)
     {
         let queue = DispatchQueue.main
         queue.async
         {
-        self.gitHubFriends = Friend.friendsJSON(data)
+        self.gitHubFriends = Friend.friendsJSON(dataFriends)
         self.tableView.reloadData()
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
         }
@@ -89,7 +73,7 @@ class GitHubFriendsTableViewController: UITableViewController, APIControllerProt
     {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FriendCell", for: indexPath)
         let friend = gitHubFriends[indexPath.row]
-        cell.textLabel?.text = friend.name
+        cell.textLabel?.text = friend.login
         return cell
     }
     //yourButton.center = CGPointMake(320.0, 480.0);

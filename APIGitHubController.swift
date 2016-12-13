@@ -10,7 +10,7 @@ import Foundation
 
 protocol APIControllerProtocol
 {
-    func didReceiveAPIData (_: [Any])
+    func didReceiveAPIData (_: String)
 }
 class APIGitHubController
 {
@@ -23,7 +23,8 @@ class APIGitHubController
     func searchGitHubFor(_ friendName: String)
     {
 
-            let urlPath = "https://api.github.com/users/\("jcgohlke")"
+
+            let urlPath = "https://api.github.com/users/\(friendName)"
             
             let url = URL(string: urlPath)!
           
@@ -38,21 +39,25 @@ class APIGitHubController
                 {
                     print(error!.localizedDescription)
                 }
-                   
-                else if self.parseJSON(data!) != nil
-               {
- 
-               }
+                if let friendInDictionary = self.parseJSON(data!)
+                {
+                    
+                    if let results = friendInDictionary["login"] as? String
+                    {
+                        self.delegate.didReceiveAPIData(results)
+                    }
+                }
+
             })
 
             task.resume()
 
     }// end of func searchGitHubFor
-    func parseJSON(_ data: Data) -> [String: Any]?
+    func parseJSON(_ dataFriends: Data) -> [String: Any]?
     {
         do
         {
-            let json = try JSONSerialization.jsonObject(with: data, options: [])
+            let json = try JSONSerialization.jsonObject(with: dataFriends, options: [])
             if let dictionary = json as? [String: Any]
             {
                 return dictionary
